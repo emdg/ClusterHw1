@@ -19,20 +19,6 @@ public class TaskMandelbrotSet implements Task<Integer[][]>{
 		this.limit = limit;
 	}
 
-	public int mandel(double cx,  double cy){
-		Complex c = new Complex(cx, cy);
-		
-		Complex z = new Complex(0, 0);
-		
-		for (int i = 0; i < limit; i++){
-			z = z.times(z).add(c);
-			
-			if (z.real() * z.real() + z.imag() * z.imag() >= 4)
-				return i;	
-		}
-	    return limit;
-	}
-	
 	@Override
 	public Integer[][] execute() {
 		// TODO Auto-generated method stub
@@ -61,54 +47,7 @@ public class TaskMandelbrotSet implements Task<Integer[][]>{
 		return count;
 	}
 	
-	
-	
-	
-	private class Complex{
-		private double re;
-		private double i;
-		public Complex(double re, double i){
-			this.re = re;
-			this.i = re;
-		}
-		
-		
-		public Complex add(Complex c){
-			return new Complex(this.re + c.re, this.i + c.i);
-		}
-		
-		public double length(){
-			return Math.sqrt(this.re * this.re - this.i * this.i);
-		}
-		
-		public double abs(){
-			return this.re;
-		}
-		
-		public double real(){
-			return this.re;
-		}
-		
-		public double imag(){
-			return this.i;
-		}
-		
-		public Complex times(Complex w) {
-		        return new Complex(re*w.real()-i*w.imag(),re*w.imag()+i*w.real());
-		}
-		
-		public Complex power(double x) {
-			    double modulus = Math.sqrt(re*re + i*i);
-			    double arg = Math.atan2(i,re);
-			    double log_re = Math.log(modulus);
-			    double log_im = arg;
-			    double x_log_re = x * log_re;
-			    double x_log_im = x * log_im;
-			    double modulus_ans = Math.exp(x_log_re);
-			    return new Complex(modulus_ans*Math.cos(x_log_im), modulus_ans*Math.sin(x_log_im));
-		}
-		
-	}
+
 	
 	
 }
